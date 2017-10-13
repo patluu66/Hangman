@@ -98,6 +98,7 @@
         var randIndex = Math.floor(Math.random() * characterName.length);
         randomWord = characterName[randIndex];
         keyArray = [];
+        startGame();
       }
 
       function winCheck(winA, Wlength) {
@@ -111,10 +112,6 @@
         }
         return false;
       }
-
-
-
-
 
       function startGame() {
         // debugger;
@@ -135,9 +132,6 @@
         document.getElementById("Word").innerHTML = "Current Word:" + "<br>" + dashWord.join("");
 
         console.log(randomWord);
-
-        // var win = 0;
-        // var lose = 0;
 
         var guessLetter = [];
         var guessLeft = 9;
@@ -183,14 +177,6 @@
               alert("Let start a new game!");
               randomWord = characterName[Math.floor(Math.random() * characterName.length)];
 
-              // dashWord = "";
-
-              // for(var i = 0; i < randomWord.length; i++) {
-              //   dashWord.push("-");
-              // }
-
-              // document.getElementById("Word").innerHTML = "Current Word:" + "<br>" + dashWord.join("");
-
               wonGame = true;
               startGame();
               guessLeft = 9;
@@ -202,19 +188,12 @@
         }
       }
 
-      // while(true) {
-      //   if(wonGame === true) {
-      //     startGame();
-      //   }
-      // }
 
       document.onkeyup = function(event) {
 
         $("#clearPressKey").html("");
   
         startGame();
-
-
       }
 
     </script>
