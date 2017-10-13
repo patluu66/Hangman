@@ -40,6 +40,12 @@
     <script>
 
       var keyArray = []; 
+      var win = 0;
+      var lose = 0;
+      var wonGame = false;
+      var randomWord = "";
+
+
 
       function repeatWinCount(randomWord, userGuess) {
         var count = 0;
@@ -87,10 +93,18 @@
           x.pause(); 
       } 
 
+      function reset() {
+        var characterName = ["richard", "bighead", "gilfoyle", "jianyang", "monica", "dinesh", "gavin", "bachman"];
+        var randIndex = Math.floor(Math.random() * characterName.length);
+        randomWord = characterName[randIndex];
+        keyArray = [];
+      }
+
       function winCheck(winA, Wlength) {
         if(winA >= Wlength) {
           alert("You Won");
           pauseAudio();
+          reset();
           win = 0;
           lose = 0;
           return true;
@@ -99,20 +113,21 @@
       }
 
 
-      var win = 0;
-      var lose = 0;
+
 
 
       function startGame() {
         // debugger;
+        wonGame = false;
         var characterName = ["richard", "bighead", "gilfoyle", "jianyang", "monica", "dinesh", "gavin", "bachman"];
         var randIndex = Math.floor(Math.random() * characterName.length);
-        var randomWord = characterName[randIndex];
-        var dashWord = [];
+        randomWord = characterName[randIndex];
+       
         var randWordArray = randomWord.split("");
 
         // console.log(randomWord);
-
+        var dashWord = [];
+        
         for(var i = 0; i < randomWord.length; i++) {
           dashWord.push("-");
         }
@@ -168,13 +183,16 @@
               alert("Let start a new game!");
               randomWord = characterName[Math.floor(Math.random() * characterName.length)];
 
-              dashWord = "";
-              
-              for(var i = 0; i < randomWord.length; i++) {
-                dashWord.push("-");
-              }
+              // dashWord = "";
 
-              document.getElementById("Word").innerHTML = "Current Word:" + "<br>" + dashWord.join("");
+              // for(var i = 0; i < randomWord.length; i++) {
+              //   dashWord.push("-");
+              // }
+
+              // document.getElementById("Word").innerHTML = "Current Word:" + "<br>" + dashWord.join("");
+
+              wonGame = true;
+              startGame();
               guessLeft = 9;
             }
 
@@ -184,10 +202,19 @@
         }
       }
 
+      // while(true) {
+      //   if(wonGame === true) {
+      //     startGame();
+      //   }
+      // }
+
       document.onkeyup = function(event) {
+
         $("#clearPressKey").html("");
   
         startGame();
+
+
       }
 
     </script>
