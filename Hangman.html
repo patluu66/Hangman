@@ -16,6 +16,8 @@
 
     <div class="container">
 
+    <h1 id="clearPressKey">Press any key to start</h1>
+
     <h1>Hangman:<br>
         Silicon Valley Edition
     </h1>
@@ -53,7 +55,7 @@
         return winCount;
       }
 
-      function revealLetter(randomWord, letterPick, dashWord, win) {
+      function revealLetter(randomWord, letterPick, dashWord) {
 
         for(var i = 0; i < randomWord.length; i++) {
           var currentLetter = randomWord[i];
@@ -84,21 +86,21 @@
           x.pause(); 
       } 
 
-      function winCheck(win, Wlength, lose) {
-        if(win >= Wlength) {
-            alert("You Won");
-            pauseAudio();
-            reset(win, lose);
-            return true;
+      function winCheck(winA, Wlength) {
+        if(winA >= Wlength) {
+          alert("You Won");
+          pauseAudio();
+          win = 0;
+          lose = 0;
+          return true;
         }
         return false;
       }
 
-      function reset(w, l) {
-        w = 0;
-        l = 0;
 
-      }
+      var win = 0;
+      var lose = 0;
+
 
       function startGame() {
         // debugger;
@@ -108,16 +110,19 @@
         var dashWord = [];
         var randWordArray = randomWord.split("");
 
+        // console.log(randomWord);
+
         for(var i = 0; i < randomWord.length; i++) {
           dashWord.push("-");
         }
 
         document.getElementById("Word").innerHTML = "Current Word:" + "<br>" + dashWord.join("");
 
-        // console.log(randomWord);
+        console.log(randomWord);
 
-        var win = 0;
-        var lose = 0;
+        // var win = 0;
+        // var lose = 0;
+
         var guessLetter = [];
 
         document.onkeyup = function(event) {
@@ -128,12 +133,11 @@
 
           var randomWordIndex = randWordArray.indexOf(userGuess);
           var letterPick = randomWord[randomWordIndex];
-          // console.log(letterPick);
 
           if(randWordArray.indexOf(userGuess) > -1 && isNotPress(userGuess) === true) {
             // win++;
             var winCount = repeatWinCount(randomWord, userGuess);
-            console.log("win count: " + winCount);
+
             win += winCount;
             playAudio();
             
@@ -141,17 +145,11 @@
 
             document.getElementById("Word").innerHTML = "Current Word:" + "<br>" + newWord;
 
-            document.getElementById("Win").innerHTML = "Win: " + win;
-
-            // console.log(win);
-            // console.log(randomWord.length);
-
             winCheck(win, randomWord.length, lose);
 
-            // if(winCheck === true) {
-            //   win = 0;
-            //   lose = 0;
-            // }
+            document.getElementById("Win").innerHTML = "Win: " + win;
+            document.getElementById("Lose").innerHTML = "Lose: " + lose;
+
 
           } else if(randWordArray.indexOf(userGuess) === -1 && isNotPress(userGuess)) {
             lose++;
@@ -160,11 +158,14 @@
           } else {
             alert("try again");
           }
-
         }
       }
-      
-      startGame();
+
+      document.onkeyup = function(event) {
+        $("#clearPressKey").html("");
+  
+        startGame();
+      }
 
     </script>
    
