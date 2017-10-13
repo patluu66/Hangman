@@ -32,8 +32,8 @@
     <h1 id="Word">Current Word:</h1>
     <p id="Player">Player Guess:</p>
     <p id="Guess">Number of guesses left:</p>
-    <p id="Win">Win</p>
-    <p id="Lose">Lose</p>
+<!--     <p id="Win">Win</p>
+    <p id="Lose">Lose</p> -->
 
     </div>
 
@@ -98,6 +98,9 @@
         var randIndex = Math.floor(Math.random() * characterName.length);
         randomWord = characterName[randIndex];
         keyArray = [];
+        guessLeft = 9;
+        win = 0;
+        lose = 0;
         startGame();
       }
 
@@ -106,8 +109,8 @@
           alert("You Won");
           pauseAudio();
           reset();
-          win = 0;
-          lose = 0;
+          // win = 0;
+          // lose = 0;
           return true;
         }
         return false;
@@ -160,8 +163,8 @@
 
             winCheck(win, randomWord.length, lose);
 
-            document.getElementById("Win").innerHTML = "Win: " + win;
-            document.getElementById("Lose").innerHTML = "Lose: " + lose;
+            // document.getElementById("Win").innerHTML = "Win: " + win;
+            // document.getElementById("Lose").innerHTML = "Lose: " + lose;
             document.getElementById("Guess").innerHTML = "Number of guesses left: " + guessLeft;
 
 
@@ -169,17 +172,17 @@
             lose++;
             guessLeft--;
             pauseAudio();
-            document.getElementById("Lose").innerHTML = "Lose: " + lose;
+            // document.getElementById("Lose").innerHTML = "Lose: " + lose;
             document.getElementById("Guess").innerHTML = "Number of guesses left: " + guessLeft;
 
             if(guessLeft < 1) {
               alert("Game Over!");
               alert("Let start a new game!");
-              randomWord = characterName[Math.floor(Math.random() * characterName.length)];
-
+              // randomWord = characterName[Math.floor(Math.random() * characterName.length)];
+              reset();
               wonGame = true;
-              startGame();
-              guessLeft = 9;
+              // startGame();
+              // guessLeft = 9;
             }
 
           } else {
