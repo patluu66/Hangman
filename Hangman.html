@@ -16,7 +16,7 @@
 
     <div class="container">
 
-    <h1 id="clearPressKey">Press spacebar to start</h1>
+    <!-- <h1 id="clearPressKey">Press spacebar to start</h1> -->
 
     <h1>Hangman:<br>
         Silicon Valley Edition
@@ -104,6 +104,14 @@
         startGame();
       }
 
+      // function newGame() {
+      //   if(e.keyCode === 32) {
+      //     $("#clearPressKey").html("");
+      //     startGame();
+      //   }
+
+      // }
+
       function winCheck(winA, Wlength) {
         if(winA >= Wlength) {
           alert("You Won");
@@ -141,6 +149,11 @@
 
         document.onkeyup = function(event) {
 
+          // newGame();
+        // if(e.keyCode === 32) {
+        //   $("#clearPressKey").html("");
+        //   startGame();
+        // }
 
 
           var userGuess = event.key;
@@ -191,15 +204,16 @@
         }
       }
 
+      startGame();
 
-      document.body.onkeyup = function(e) {
-        // var startKey = event.key;
+      // document.body.onkeyup = function(e) {
+      //   // var startKey = event.key;
 
-        if(e.keyCode === 32) {
-          $("#clearPressKey").html("");
-          startGame();
-        }
-      }
+      //   if(e.keyCode === 32) {
+      //     $("#clearPressKey").html("");
+      //     startGame();
+      //   }
+      // }
 
     </script>
    
