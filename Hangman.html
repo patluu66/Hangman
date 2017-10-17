@@ -16,7 +16,7 @@
 
     <div class="container">
 
-    <h1 id="clearPressKey">Press any key to start</h1>
+    <h1 id="clearPressKey">Press spacebar to start</h1>
 
     <h1>Hangman:<br>
         Silicon Valley Edition
@@ -192,11 +192,13 @@
       }
 
 
-      document.onkeyup = function(event) {
+      document.body.onkeyup = function(e) {
+        // var startKey = event.key;
 
-        $("#clearPressKey").html("");
-  
-        startGame();
+        if(e.keyCode === 32) {
+          $("#clearPressKey").html("");
+          startGame();
+        }
       }
 
     </script>
